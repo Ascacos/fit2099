@@ -1,0 +1,13 @@
+Work Breakdown Agreement (Team 3, Lab 19)
+
+Who will be responsible for producing each deliverable?:
+    Team 3 will meet regularly (most nights) after 6pm via a group Discord call, and work on all tasks together.
+    No single member will be responsible for any one task
+
+Who will be responsible for testing/reviewing deliverables?:
+    The team will test & review deliverable together towards the end of completion.
+
+Dates by which deliverable and review should be completed:
+    Wednesday 6th Apr - UML class diagrams complete
+    Friday 8th Apr    - Sequence diagram complete
+    Sunday 10th Apr   - Review and submit
