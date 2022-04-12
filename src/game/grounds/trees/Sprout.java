@@ -9,6 +9,7 @@ import java.util.Random;
 public class Sprout extends Ground {
 
     private final Random rand = new Random();
+    private int age = 0;
 
     public Sprout() {
         super('+');
@@ -16,6 +17,8 @@ public class Sprout extends Ground {
 
     @Override
     public void tick(Location location) {
+        age++;
+
         // 10% chance to summon a Goomba
         if (rand.nextInt(100) < 10) {
             location.addActor(new Goomba());
