@@ -8,9 +8,11 @@ import java.util.Random;
 public class Sapling extends Ground {
 
     private final Random rand = new Random();
+    private int age;
 
     public Sapling() {
         super('t');
+        age = 0;
     }
 
     @Override
