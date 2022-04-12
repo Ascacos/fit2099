@@ -8,6 +8,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.Player;
+import game.actors.enemies.Goomba;
+import game.grounds.Dirt;
+import game.grounds.Floor;
+import game.grounds.Wall;
+import game.grounds.trees.Mature;
+import game.grounds.trees.Sapling;
+import game.grounds.trees.Sprout;
 
 /**
  * The main class for the Mario World game.
