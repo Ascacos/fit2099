@@ -1,0 +1,2 @@
+The Tree.java class was supposed to be a superclass for Sprout.java, Sapling.java and Mature.java
+The functionality that is shared between these classes does not differ, so an abstract class wouldn't be as appropriate, since the overidden classes would be, for the most part, identical
