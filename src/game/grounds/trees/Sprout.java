@@ -6,7 +6,7 @@ import game.actors.enemies.Goomba;
 
 import java.util.Random;
 
-public class Sprout extends Ground {
+public class Sprout extends Ground implements Tree {
 
     private final Random rand = new Random();
     private int age;
@@ -24,5 +24,10 @@ public class Sprout extends Ground {
         if (rand.nextInt(100) < 10) {
             location.addActor(new Goomba());
         }
+    }
+
+    @Override
+    public int getAge() {
+        return this.age;
     }
 }
