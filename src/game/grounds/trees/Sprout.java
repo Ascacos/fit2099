@@ -24,6 +24,11 @@ public class Sprout extends Ground implements Tree {
         if (rand.nextInt(100) < 10) {
             if (location.containsAnActor()) location.addActor(new Goomba());
         }
+
+        //if age = 10, become Sapling
+        if (age == 10) {
+            location.setGround(new Sapling(age));
+        }
     }
 
     @Override
