@@ -2,6 +2,7 @@ package game.grounds.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
 import game.actors.enemies.Goomba;
 
 import java.util.Random;
@@ -14,6 +15,7 @@ public class Sprout extends Ground implements Tree {
     public Sprout() {
         super('+');
         age = 0;
+        this.addCapability(Status.TALL);
     }
 
     @Override

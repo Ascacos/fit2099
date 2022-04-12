@@ -2,6 +2,7 @@ package game.grounds.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
 import game.items.Coin;
 
 import java.util.Random;
@@ -14,11 +15,13 @@ public class Sapling extends Ground implements Tree {
     public Sapling() {
         super('t');
         age = 0;
+        this.addCapability(Status.TALL);
     }
 
     public Sapling(int age) {
         super('t');
         this.age = age;
+        this.addCapability(Status.TALL);
     }
 
     @Override

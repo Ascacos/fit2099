@@ -2,6 +2,7 @@ package game.grounds.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
 import game.grounds.Dirt;
 
 import java.util.Random;
@@ -15,11 +16,13 @@ public class Mature extends Ground implements Tree {
     public Mature() {
         super('T');
         age = 0;
+        this.addCapability(Status.TALL);
     }
 
     public Mature(int age) {
         super('T');
         this.age = age;
+        this.addCapability(Status.TALL);
     }
 
     @Override
