@@ -22,7 +22,7 @@ public class Sprout extends Ground implements Tree {
 
         // 10% chance to summon a Goomba
         if (rand.nextInt(100) < 10) {
-            location.addActor(new Goomba());
+            if (location.containsAnActor()) location.addActor(new Goomba());
         }
     }
 
