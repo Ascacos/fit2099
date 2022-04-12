@@ -2,6 +2,7 @@ package game.grounds.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.items.Coin;
 
 import java.util.Random;
 
@@ -26,7 +27,7 @@ public class Sapling extends Ground implements Tree {
 
         // 10% chance to summon a Coin
         if (rand.nextInt(100) < 10) {
-            //TODO: Summon a coin ($20)
+            location.addItem(new Coin(20));
         }
         System.out.println("Sapling age: " + age);
         if (age == 20) {
