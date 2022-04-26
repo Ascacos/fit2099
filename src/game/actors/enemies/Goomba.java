@@ -7,8 +7,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.Status;
+import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
 
@@ -17,15 +19,13 @@ import java.util.Map;
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor {
-	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+public class Goomba extends Enemy {
 
 	/**
 	 * Constructor.
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 50);
-		this.behaviours.put(10, new WanderBehaviour());
 	}
 
 	/**
@@ -43,6 +43,8 @@ public class Goomba extends Actor {
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 			actions.add(new AttackAction(this,direction));
+			behaviours.put(9, new FollowBehaviour(otherActor));
+			behaviours.put(8, new AttackBehaviour(this, otherActor));
 		}
 		return actions;
 	}
