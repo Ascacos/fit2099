@@ -33,6 +33,7 @@ public abstract class Tree extends Ground {
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
+        if (location.containsAnActor() && location.getActor().equals(actor)) { return new ActionList(); }
         return new ActionList(new JumpAction(location, direction));
     }
 
