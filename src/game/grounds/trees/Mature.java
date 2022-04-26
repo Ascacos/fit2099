@@ -1,13 +1,13 @@
 package game.grounds.trees;
 
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
+import game.actors.enemies.Koopa;
 import game.grounds.Dirt;
 
 import java.util.Random;
 
-public class Mature extends Ground implements Tree {
+public class Mature extends Tree {
 
     private final Random rand = new Random();
     private int age;
@@ -32,11 +32,11 @@ public class Mature extends Ground implements Tree {
 
         // 15% chance to summon a Koopa
         if (rand.nextInt(100) < 15) {
-            //TODO: location.addActor(new Koopa());
+            spawnActor(location, new Koopa());
         }
 
         if (rand.nextInt(100) < 20) {
-            if (!location.containsAnActor()) location.setGround(new Dirt());
+                if (!location.containsAnActor()) location.setGround(new Dirt());
         }
 
         if (growthCycle >= 5) {

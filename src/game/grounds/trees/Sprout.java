@@ -7,7 +7,7 @@ import game.actors.enemies.Goomba;
 
 import java.util.Random;
 
-public class Sprout extends Ground implements Tree {
+public class Sprout extends Tree {
 
     private final Random rand = new Random();
     private int age;
