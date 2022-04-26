@@ -15,6 +15,8 @@ public class Player extends Actor  {
 
 	private final Menu menu = new Menu();
 
+	private int balance;
+
 	/**
 	 * Constructor.
 	 *
@@ -40,5 +42,14 @@ public class Player extends Actor  {
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+	}
+
+	public boolean addMoney(int amount) {
+		if (amount > 0) {
+			this.balance += amount;
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
