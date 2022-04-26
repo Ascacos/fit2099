@@ -15,7 +15,6 @@ public class Sprout extends Tree {
     public Sprout() {
         super('+');
         age = 0;
-        this.addCapability(Status.TALL);
     }
 
     @Override

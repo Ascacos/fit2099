@@ -16,13 +16,11 @@ public class Mature extends Tree {
     public Mature() {
         super('T');
         age = 0;
-        this.addCapability(Status.TALL);
     }
 
     public Mature(int age) {
         super('T');
         this.age = age;
-        this.addCapability(Status.TALL);
     }
 
     @Override

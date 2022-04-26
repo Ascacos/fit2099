@@ -14,13 +14,11 @@ public class Sapling extends Tree {
     public Sapling() {
         super('t');
         age = 0;
-        this.addCapability(Status.TALL);
     }
 
     public Sapling(int age) {
         super('t');
         this.age = age;
-        this.addCapability(Status.TALL);
     }
 
     @Override
