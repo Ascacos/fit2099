@@ -3,10 +3,11 @@ package game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Player;
 
 public class AddMoneyAction extends Action {
 
-    private int amount;
+    private final int amount;
 
     public AddMoneyAction(int amount) {
         this.amount = amount;
@@ -14,7 +15,12 @@ public class AddMoneyAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        // FIXME: this does nothing! how to add money to the player?
+
+        //FIXME: we cannot use instanceof in our final submission (WILL LOSE MARKS)
+        if (actor instanceof Player) {
+
+            ((Player) actor).addMoney(this.amount);
+        }
         return menuDescription(actor);
     }
 
