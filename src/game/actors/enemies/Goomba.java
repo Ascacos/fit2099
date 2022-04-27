@@ -7,15 +7,13 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.behaviours.AttackBehaviour;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.behaviours.Behaviour;
 import game.Status;
 import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
 
-import java.util.HashMap;
-import java.util.Map;
 /**
  * A little fungus guy.
  */
@@ -25,7 +23,7 @@ public class Goomba extends Enemy {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 50);
+		super("Goomba", 'g', 20);
 	}
 
 	/**
@@ -41,10 +39,9 @@ public class Goomba extends Enemy {
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add(new AttackAction(this,direction));
-			behaviours.put(9, new FollowBehaviour(otherActor));
-			behaviours.put(8, new AttackBehaviour(this, otherActor));
+		if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+			actions.add(new AttackAction(this, direction));
+			behaviours.put(5, new FollowBehaviour(otherActor));
 		}
 		return actions;
 	}
@@ -55,7 +52,7 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		for(Behaviour Behaviour : behaviours.values()) {
+		for (Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
 				return action;
@@ -63,4 +60,13 @@ public class Goomba extends Enemy {
 		return new DoNothingAction();
 	}
 
+	@Override
+	public Weapon getWeapon() {
+		return getIntrinsicWeapon();
+	}
+
+	@Override
+	public IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(10, "kicks");
+	}
 }
