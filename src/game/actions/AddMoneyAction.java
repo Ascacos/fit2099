@@ -20,6 +20,10 @@ public class AddMoneyAction extends Action {
         if (actor instanceof Player) {
 
             ((Player) actor).addMoney(this.amount);
+
+            //TODO: How to delete coin after being picked up?
+            // this line is removing *all* items, not just the coin that was picked up
+            map.at(map.locationOf(actor).x(), map.locationOf(actor).y()).getItems().clear();
         }
         return menuDescription(actor);
     }
