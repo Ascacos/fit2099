@@ -52,4 +52,18 @@ public class Player extends Actor  {
 			return false;
 		}
 	}
+
+	/**
+	 * A method to deduct hit points from a Player, while also checking if the player
+	 * has any buffs (Super Mushroom) and act accordingly.
+	 *
+	 * @param points number of hit points to deduct.
+	 */
+	@Override
+	public void hurt(int points) {
+		if (this.hasCapability(Status.SUPER_MUSHROOM)) {
+			removeCapability(Status.SUPER_MUSHROOM);
+		}
+		super.hurt(points);
+	}
 }
