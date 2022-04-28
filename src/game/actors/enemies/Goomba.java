@@ -69,10 +69,4 @@ public class Goomba extends Enemy {
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "kicks");
 	}
-
-	@Override
-	public void resetInstance() {
-
-	}
-
 }

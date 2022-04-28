@@ -48,9 +48,4 @@ public class Sapling extends Tree {
     public int getAge() {
         return this.age;
     }
-
-    @Override
-    public void resetInstance() {
-
-    }
 }

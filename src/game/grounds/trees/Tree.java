@@ -6,9 +6,8 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.JumpAction;
-import game.reset.Resettable;
 
-public abstract class Tree extends Ground implements Resettable {
+public abstract class Tree extends Ground {
 
     private int age;
 
