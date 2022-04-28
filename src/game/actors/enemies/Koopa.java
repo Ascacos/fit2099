@@ -41,4 +41,9 @@ public class Koopa extends Enemy {
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punches");
     }
+
+    @Override
+    public void resetInstance() {
+
+    }
 }
