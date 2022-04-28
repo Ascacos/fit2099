@@ -7,12 +7,11 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
-import game.reset.Resettable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Enemy extends Actor implements Resettable {
+public abstract class Enemy extends Actor {
     protected final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
     /**

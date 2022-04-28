@@ -37,27 +37,7 @@ public abstract class Item implements Printable, Capable {
 		this.allowableActions = new ActionList();
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public boolean isPortable() {
-		return portable;
-	}
-
-	public void setPortable(boolean portable) {
-		this.portable = portable;
-	}
-
-	public void setAllowableActions(ActionList allowableActions) {
-		this.allowableActions = allowableActions;
-	}
-
-	public CapabilitySet getCapabilitySet() {
-		return capabilitySet;
-	}
-
-	/**
+    /**
      * Inform a carried Item of the passage of time.
      * 
      * This method is called once per turn, if the Item is being carried.
