@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
 import game.actions.ConsumeItemAction;
 
-public class SuperMushroom extends Consumable {
+public class SuperMushroom extends ConsumableItem {
 
     /***
      * Constructor.

@@ -3,7 +3,7 @@ package game.items;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 
-public abstract class Consumable extends Item {
+public abstract class ConsumableItem extends Item {
 
     /**
      * Constructor
@@ -12,7 +12,7 @@ public abstract class Consumable extends Item {
      * @param displayChar The character to display on the map
      * @param portable True if the item can be picked up
      */
-    public Consumable(String name, char displayChar, boolean portable){
+    public ConsumableItem(String name, char displayChar, boolean portable){
         super(name, displayChar, portable);
     }
 

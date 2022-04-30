@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.ConsumeItemAction;
 
-public class PowerStar extends Consumable {
+public class PowerStar extends ConsumableItem {
 
     /**
      * The amount to heal an Actor, when consumed.
