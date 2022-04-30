@@ -8,18 +8,24 @@ import game.actions.AttackAction;
 
 public class AttackBehaviour implements Behaviour{
 
+    /**
+     * The actor to attack
+     */
     private final Actor target;
 
+    /**
+     * Constructor
+     * @param actor The attacking actor
+     * @param target The target actor
+     */
     public AttackBehaviour(Actor actor, Actor target) {
         this.target = target;
     }
 
-    // TODO: develop and use it to attack the player automatically.
     @Override
     public Action getAction(Actor actor, GameMap map) {
         for (Exit exit : map.locationOf(actor).getExits()) {
             if (exit.getDestination().getActor() == target) {
-                System.out.println("attack action");
                 return new AttackAction(target, exit.getName());
             }
         }
