@@ -45,16 +45,21 @@ public class JumpAction extends Action {
         if (destination.containsAnActor()) {
             return actor + " cant go there";
         } else {
+            if (actor.hasCapability(Status.POWER_STAR)) {
+                Action powerMove = new PowerMoveAction(destination);
+                powerMove.execute(actor, map);
+                return null;
+            }
             //if the Actor has an active Super Mushroom, jump instantly
             if (actor.hasCapability(Status.SUPER_MUSHROOM)) {
                 map.moveActor(actor, destination);
-                return actor + "jumped " + direction;
+                return actor + " super jumped " + direction;
             }
 
             // evaluate % chance of successfully jumping
             if (rand.nextInt(101) <= successRate) {
                 map.moveActor(actor, destination);
-                return actor + "jumped " + direction;
+                return actor + " jumped " + direction;
             } else {
                 //if the jump fails :( take damage
                 actor.hurt(failDamage);
@@ -63,11 +68,6 @@ public class JumpAction extends Action {
         }
     }
 
-    /**
-     *
-     * @param actor The actor performing the action.
-     * @return A description of the potential action
-     */
     @Override
     public String menuDescription(Actor actor) {
         return "Jump to " + direction;
