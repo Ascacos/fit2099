@@ -17,6 +17,7 @@ import game.grounds.Wall;
 import game.grounds.trees.Mature;
 import game.grounds.trees.Sapling;
 import game.grounds.trees.Sprout;
+import game.items.PowerStar;
 import game.items.SuperMushroom;
 
 /**
@@ -61,8 +62,12 @@ public class Application {
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
 
-			Item item = new SuperMushroom();
-			gameMap.at(41,10).addItem(item);
+			Item mushroom = new SuperMushroom();
+			gameMap.at(41,10).addItem(mushroom);
+
+			Item star = new PowerStar();
+			gameMap.at(41, 11).addItem(star);
+
 
 
 
