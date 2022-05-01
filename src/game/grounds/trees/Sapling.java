@@ -16,11 +16,13 @@ public class Sapling extends Tree {
     public Sapling() {
         super('t');
         age = 0;
+        registerInstance();
     }
 
     public Sapling(int age) {
         super('t');
         this.age = age;
+        registerInstance();
     }
 
     @Override

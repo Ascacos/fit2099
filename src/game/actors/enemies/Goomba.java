@@ -24,6 +24,7 @@ public class Goomba extends Enemy {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
+		registerInstance();
 	}
 
 	/**

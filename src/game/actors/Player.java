@@ -28,6 +28,7 @@ public class Player extends Actor implements Resettable {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		registerInstance();
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class Coin extends Item implements Resettable {
         super("Coin", '$', false);
         this.value = value;
         this.addAction(new AddMoneyAction(value));
+        registerInstance();
     }
 
     @Override

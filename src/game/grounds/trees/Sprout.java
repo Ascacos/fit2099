@@ -16,6 +16,7 @@ public class Sprout extends Tree {
     public Sprout() {
         super('+');
         age = 0;
+        registerInstance();
     }
 
     @Override
