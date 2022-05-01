@@ -54,7 +54,10 @@ public class Goomba extends Enemy {
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		//Check for Reset
-		super.playTurn(actions, lastAction, map, display);
+		Action parentAction = super.playTurn(actions, lastAction, map, display);
+		if (parentAction != null){
+			return parentAction;
+		}
 
 		for (Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);

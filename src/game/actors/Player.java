@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.actions.ResetAction;
 import game.reset.Resettable;
 
 /**
@@ -17,6 +18,8 @@ public class Player extends Actor implements Resettable {
 	private final Menu menu = new Menu();
 
 	private int balance;
+
+	private final ActionList defaultActions = new ActionList(new ResetAction());
 
 	/**
 	 * Constructor.
@@ -33,6 +36,8 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		actions.add(defaultActions);
+
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -40,6 +45,7 @@ public class Player extends Actor implements Resettable {
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
+
 
 	@Override
 	public char getDisplayChar(){

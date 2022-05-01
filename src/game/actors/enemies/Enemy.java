@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
+import game.actions.SuicideAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.reset.Resettable;
@@ -33,7 +34,7 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if(this.hasCapability(Status.RESETTING)){
-            map.removeActor(this);
+            return new SuicideAction();
         }
         return null;
     }
