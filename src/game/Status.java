@@ -10,4 +10,5 @@ public enum Status {
     SUPER_MUSHROOM,     // used when an Actor is under the effect of a Super Mushroom consumable
     POWER_STAR,         // used when an Actor is under the effect of a Power Star consumable
     FERTILE,            // used to distinguish between fertile and infertile land
+    RESETTING,          // used this to indicate a resetting ITEM/ACTOR/GROUND on next tick
 }

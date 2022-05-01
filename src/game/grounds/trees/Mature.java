@@ -36,6 +36,9 @@ public class Mature extends Tree {
 
     @Override
     public void tick(Location location) {
+        //Call Parent tick (Check for Reset)
+        super.tick(location);
+
         age++;
         growthCycle++;
 

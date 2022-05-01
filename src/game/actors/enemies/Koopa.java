@@ -24,6 +24,9 @@ public class Koopa extends Enemy {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        //Check for Reset
+        super.playTurn(actions, lastAction, map, display);
+
         for(game.behaviours.Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);
             if (action != null)

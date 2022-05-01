@@ -25,6 +25,9 @@ public class Sapling extends Tree {
 
     @Override
     public void tick(Location location) {
+        //Call Parent tick (Check for Reset)
+        super.tick(location);
+
         age++;
 
         // 10% chance to summon a Coin

@@ -7,11 +7,12 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.reset.Resettable;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor  {
+public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 
@@ -65,5 +66,18 @@ public class Player extends Actor  {
 			removeCapability(Status.SUPER_MUSHROOM);
 		}
 		super.hurt(points);
+	}
+
+	@Override
+	public void resetInstance() {
+		//Heals Mario to Max Hp
+		this.heal(this.getMaxHp());
+		//Reset Player Status (Super-mushroom and Power star)
+		if (this.hasCapability(Status.SUPER_MUSHROOM)) {
+			this.removeCapability(Status.SUPER_MUSHROOM);
+		}
+		if(this.hasCapability(Status.POWER_STAR)){
+			this.removeCapability(Status.POWER_STAR);
+		}
 	}
 }
