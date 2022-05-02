@@ -33,9 +33,9 @@ public class Toad extends Actor {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        actions.add(new BuyItemAction(new PowerStar(false), 0));
-        actions.add(new BuyItemAction(new SuperMushroom(false), 0));
-
+        actions.add(new BuyItemAction(new PowerStar(false), 600));
+        actions.add(new BuyItemAction(new SuperMushroom(false), 400));
+        actions.add(new BuyItemAction(new Wrench(), 200));
         actions.add(new TalkAction(this, generateMessages(otherActor)));
         return actions;
     }
