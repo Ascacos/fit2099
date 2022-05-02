@@ -63,10 +63,10 @@ public class Application {
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
 
-			Item mushroom = new SuperMushroom();
+			Item mushroom = new SuperMushroom(true);
 			gameMap.at(41,10).addItem(mushroom);
 
-			Item star = new PowerStar();
+			Item star = new PowerStar(true);
 			gameMap.at(41, 11).addItem(star);
 
 			Actor toad = new Toad();
