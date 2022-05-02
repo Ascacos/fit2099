@@ -54,6 +54,10 @@ public class Goomba extends Enemy {
 
 	/**
 	 * Figure out what to do next.
+	 * If the Goomba is not committed to being reset, the following will occur in order:
+	 * The Goomba has a 10% chance to return a SuicideAction and be removed from the map via a SuicideAction, then
+	 * this method will iterate through it's behaviours to find an action to return.
+	 * If no action is found, then this method will return a DoNothingAction.
 	 * @see Actor#playTurn(ActionList, Action, GameMap, Display)
 	 */
 	@Override
@@ -77,11 +81,21 @@ public class Goomba extends Enemy {
 		return new DoNothingAction();
 	}
 
+	/**
+	 * A method to get the Goomba's weapon
+	 * The Goomba does not hold weapon items, so we will always
+	 * return it's intrinsic weapon.
+	 * @return The weapon of this Goomba (intrinsic weapon)
+	 */
 	@Override
 	public Weapon getWeapon() {
 		return getIntrinsicWeapon();
 	}
 
+	/**
+	 * A method to get the Goomba's intrinsic weapon - a kick that deals 10 damage.
+	 * @return The intrinsic weapon of a Goomba (kick)
+	 */
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "kicks");
