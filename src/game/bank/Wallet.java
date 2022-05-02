@@ -1,10 +1,10 @@
 package game.bank;
 
-public class Bank {
+public class Wallet {
 
     private int balance;
 
-    public Bank() {
+    public Wallet() {
         balance = 0;
     }
 
