@@ -9,15 +9,20 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actions.SuicideAction;
 import game.behaviours.Behaviour;
 import game.Status;
 import game.behaviours.FollowBehaviour;
 import game.actions.AttackAction;
 
+import java.util.Random;
+
 /**
  * A little fungus guy.
  */
 public class Goomba extends Enemy {
+
+	private final Random rand = new Random();
 
 	/**
 	 * Constructor.
@@ -57,6 +62,11 @@ public class Goomba extends Enemy {
 		Action parentAction = super.playTurn(actions, lastAction, map, display);
 		if (parentAction != null){
 			return parentAction;
+		}
+
+		// In every turn, has a 10% chance to be removed from the map (suicide)
+		if (rand.nextInt(101) < 10) {
+			return new SuicideAction();
 		}
 
 		for (Behaviour Behaviour : behaviours.values()) {
