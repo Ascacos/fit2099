@@ -19,7 +19,7 @@ public class Coin extends Item implements Resettable {
     public Coin(int value) {
         super("Coin", '$', false);
         this.value = value;
-        this.addAction(new AddMoneyAction(value));
+        this.addAction(new AddMoneyAction(this));
         registerInstance();
     }
 
@@ -31,6 +31,9 @@ public class Coin extends Item implements Resettable {
         }
     }
 
+    public int getValue() {
+        return this.value;
+    }
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESETTING);
