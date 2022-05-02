@@ -3,7 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.Player;
+import game.bank.WalletManager;
 import game.items.Coin;
 
 public class AddMoneyAction extends Action {
@@ -17,13 +17,17 @@ public class AddMoneyAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        //FIXME: we cannot use instanceof in our final submission (WILL LOSE MARKS)
-        if (actor instanceof Player) {
+        // get the bank containing all actor's wallets
+        WalletManager bank = WalletManager.getInstance();
 
-            ((Player) actor).addMoney(coin.getValue());
-
-            map.locationOf(actor).removeItem(coin);
+        // check if the actor has a wallet
+        // or, more implicitly, check if the WalletManager has this actor in it's map of actors and their associated
+        // wallets.
+        if (bank.getWallets().containsKey(actor)) {
+           bank.getWallets().get(actor).addMoney(coin.getValue());
+           map.locationOf(actor).removeItem(coin);
         }
+
         return menuDescription(actor);
     }
 
