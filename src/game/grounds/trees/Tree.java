@@ -1,12 +1,9 @@
 package game.grounds.trees;
 
-import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
-import game.actions.JumpAction;
-import game.actors.enemies.Goomba;
 import game.grounds.Dirt;
 import game.reset.Resettable;
 
@@ -53,6 +50,11 @@ public abstract class Tree extends Ground implements Resettable {
         if (!location.containsAnActor()) {
             location.addActor(actor);
         }
+    }
+
+    @Override
+    public boolean canActorEnter(Actor actor) {
+        return actor.hasCapability(Status.HOSTILE_TO_ENEMY);
     }
 
     @Override
