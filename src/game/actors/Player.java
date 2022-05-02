@@ -7,17 +7,17 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.bank.Economy;
 import game.actions.ResetAction;
+import game.bank.WalletManager;
 import game.reset.Resettable;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Resettable {
+public class Player extends Actor implements Resettable, Economy {
 
 	private final Menu menu = new Menu();
-
-	private int balance;
 
 	private final ActionList defaultActions = new ActionList(new ResetAction());
 
@@ -33,6 +33,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		registerInstance();
+		addWallet();
 	}
 
 	@Override
@@ -54,15 +55,6 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.SUPER_MUSHROOM) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
-	}
-
-	public boolean addMoney(int amount) {
-		if (amount > 0) {
-			this.balance += amount;
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -91,5 +83,10 @@ public class Player extends Actor implements Resettable {
 		if(this.hasCapability(Status.POWER_STAR)){
 			this.removeCapability(Status.POWER_STAR);
 		}
+	}
+
+	@Override
+	public void addWallet() {
+		WalletManager.getInstance().add(this);
 	}
 }
