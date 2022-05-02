@@ -4,6 +4,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
 import game.actions.ConsumeItemAction;
 
+/**
+ * A class representing a Super Mushroom consumable.
+ * Super Mushrooms will give an actor perfect jumps when consumed.
+ */
 public class SuperMushroom extends ConsumableItem {
 
     /***
@@ -14,6 +18,11 @@ public class SuperMushroom extends ConsumableItem {
         this.addAction(new ConsumeItemAction(this));
     }
 
+    /**
+     * Consumes the Super Mushroom
+     * Increases the actor's HP by 50, and gives the SUPER_MUSHROOM status buff.
+     * @param actor The actor to consume the mushroom
+     */
     @Override
     public void consume(Actor actor) {
 

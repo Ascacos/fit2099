@@ -5,6 +5,10 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.ConsumeItemAction;
 
+/**
+ * A class representing a Power Star item.
+ * Power Stars will make an actor temporarily invincible on consumption, but will only remain in the map for 10 turns.
+ */
 public class PowerStar extends ConsumableItem {
 
     /**

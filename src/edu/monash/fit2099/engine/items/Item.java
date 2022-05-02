@@ -49,7 +49,7 @@ public abstract class Item implements Printable, Capable {
 	
     /**
      * Inform an Item on the ground of the passage of time. 
-     * This method is called once per turn, if the item rests upon the ground.
+     * This method is called once per turn, ift the item rests upon he ground.
      * @param currentLocation The location of the ground on which we lie.
      */
 	public void tick(Location currentLocation) {

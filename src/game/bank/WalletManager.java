@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 
 import java.util.*;
 
+/**
+ * A singleton class to manage Wallets and their associated Actors.
+ */
 public class WalletManager {
     /**
      * A map of Actors (Key) and their Wallets (Value)

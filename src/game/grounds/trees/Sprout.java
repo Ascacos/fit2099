@@ -8,10 +8,13 @@ import game.actors.enemies.Goomba;
 
 import java.util.Random;
 
+/**
+ * A class representing a sprout (tree)
+ * Sprout's have a 10% chance to spawn a Goomba each turn, and will grow into a sapling when it's age hits 10.
+ */
 public class Sprout extends Tree {
 
     private final Random rand = new Random();
-    private int age;
 
     public Sprout() {
         super('+');
@@ -19,6 +22,11 @@ public class Sprout extends Tree {
         registerInstance();
     }
 
+    /**
+     * Each tick, Sprout's age is incremented.
+     * Then, it will roll to spawn a Goomba (10% chance)
+     * @param location The location of the tree.
+     */
     @Override
     public void tick(Location location) {
         //Call Parent tick (Check for Reset)
@@ -37,14 +45,17 @@ public class Sprout extends Tree {
         }
     }
 
+    /**
+     * A method to get the allowable actions when adjacent to a Sprout.
+     *
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return An empty ActionList if the actor is on the tree, or a JumpAction.
+     */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         if (location.containsAnActor() && location.getActor().equals(actor)) { return new ActionList(); }
         return new ActionList(new JumpAction(location, direction, 90, 10));
-    }
-
-    @Override
-    public int getAge() {
-        return this.age;
     }
 }

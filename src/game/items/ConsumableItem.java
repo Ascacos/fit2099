@@ -4,8 +4,14 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import game.actions.ConsumeItemAction;
 
+/**
+ * An abstract class representing an item that can be consumed.
+ */
 public abstract class ConsumableItem extends Item {
 
+    /**
+     * The action this item will execute
+     */
     protected ConsumeItemAction consumeItemAction;
 
     /**

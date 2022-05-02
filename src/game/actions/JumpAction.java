@@ -8,17 +8,34 @@ import game.Status;
 
 import java.util.Random;
 
-
+/**
+ * A special action to allow Actors to jump to high ground.
+ * Only actor's with {@link game.Status#HOSTILE_TO_ENEMY HOSTILE_TO_ENEMY} can jump to high grounds.
+ * A ground is considered high if it has the {@link game.Status#TALL TALL} capability.
+ */
 public class JumpAction extends Action {
 
     private final Random rand = new Random();
+    /**
+     * The destination to jump to
+     * @see Location
+     */
     private final Location destination;
+    /**
+     * The direction to jump to (cardinal)
+     */
     private final String direction;
+    /**
+     * The success rate of the jump.
+     */
     private final int successRate;
+    /**
+     * The amount of damage to take, if the jump fails.
+     */
     private final int failDamage;
 
     /**
-     *
+     * Constructor.
      *
      * @param destination The location to jump to
      * @param direction The direction to jump in (cardinal diredction), relative to the Actor's location
@@ -68,6 +85,12 @@ public class JumpAction extends Action {
         }
     }
 
+    /**
+     * A method to return a descriptive string
+     * @see edu.monash.fit2099.engine.actions.Action#menuDescription(Actor)
+     * @param actor The actor performing the action.
+     * @return A string to display in the game menu.
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Jump to " + direction;

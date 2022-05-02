@@ -11,7 +11,7 @@ import java.util.Random;
 
 public abstract class Tree extends Ground implements Resettable {
 
-    private int age;
+    protected int age;
 
     /**
      * Constructor.

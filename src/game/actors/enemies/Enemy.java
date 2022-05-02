@@ -16,6 +16,9 @@ import game.reset.Resettable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * An abstract class containing the base logic for an Enemy actor in the game.
+ */
 public abstract class Enemy extends Actor implements Resettable {
     /**
      * A map containing an Enemy's behaviours
@@ -57,6 +60,15 @@ public abstract class Enemy extends Actor implements Resettable {
         return actions;
     }
 
+    /**
+     * Figures out what action this actor should perform.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return The action this actor should perform.
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if(this.hasCapability(Status.RESETTING)){
@@ -65,6 +77,9 @@ public abstract class Enemy extends Actor implements Resettable {
         return null;
     }
 
+    /**
+     * Prepares this actor to be reset.
+     */
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESETTING);

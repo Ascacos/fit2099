@@ -15,10 +15,12 @@ import game.behaviours.DormantBehaviour;
 import game.items.PowerStar;
 import game.items.Wrench;
 
+/**
+ * A turtle with a very hard shell.
+ */
 public class Koopa extends Enemy implements Shell {
     /**
      * Constructor.
-     *
      */
     public Koopa() {
         super("Koopa", 'K', 100);
@@ -27,6 +29,11 @@ public class Koopa extends Enemy implements Shell {
 
     /**
      * Figure out what to do next.
+     *
+     * This method will first check if the Koopa is in it's dormant state, and if so, will assign it a {@link DormantBehaviour Dormant Behaviour}
+     * with a priority of 1. Next, it will iterate over all behaviours and return an appropriate action.
+     *
+     * @see Enemy#playTurn(ActionList, Action, GameMap, Display)
      * @see Actor#playTurn(ActionList, Action, GameMap, Display)
      */
     @Override
@@ -47,6 +54,11 @@ public class Koopa extends Enemy implements Shell {
         return new DoNothingAction();
     }
 
+    /**
+     * A method to check if a Koopa is in it's dormant state.
+     *
+     * @return True if and only if the Koopa is dormant
+     */
     private boolean isDormant() {
         return this.hasCapability(Status.DORMANT);
     }
@@ -56,38 +68,70 @@ public class Koopa extends Enemy implements Shell {
         return getIntrinsicWeapon();
     }
 
+    /**
+     * A method to get the Koopa's intrinsic weapon (punch = 30dmg)
+     *
+     * @return An intrinsic weapon.
+     */
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punches");
     }
 
+    /**
+     * An override method to see if this Koopa is conscious - but not in a traditional way.
+     * Due to Koopa's still technically being 'conscious' at 0 HP (due to their {@link Shell Shell}), this method
+     * checks if the Koopa has HP > 0 and if it is dormant
+     * @return true if and only if the Koopa has HP < 0 and is no longer dormant (shell destroyed).
+     */
     @Override
     public boolean isConscious() {
         if (super.isConscious()) return true;
         else return !isDormant();
     }
 
+    /**
+     * An override method to apply damage to a Koopa.
+     * This method will add an additional check to see if the Koopa takes lethal damage from the attack and if so,
+     * put it in it's dormant state.
+     *
+     * @param points number of hitpoints to deduct.
+     */
     @Override
     public void hurt(int points) {
-        System.out.println("Koopa hp: " + printHp());
         super.hurt(points);
         if (!super.isConscious()) {
             this.addCapability(Status.DORMANT);
         }
     }
 
+    /**
+     * An override method to determine if a Koopa is in it's dormant state ('D') or not ('K').
+     * @return 'D' if dormant, otherwise 'K'.
+     */
     @Override
     public char getDisplayChar() {
         if (this.isDormant()) return 'D';
         else return super.getDisplayChar();
     }
 
+    /**
+     * A method to get the allowable actions of the Koopa, checking first if it is in it's dormant state.
+     *
+     * If the Koopa is in it's dormant state, this method will check if the acting actor possesses a {@link game.items.Wrench Wrench}
+     * and if so, returns an ActionList containing only a  {@link game.actions.DestroyShellAction DestroyShellAction}.
+     * @param otherActor the Actor that might perform an action.
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A list of potential actions the actor can perform.
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         if (!isDormant()) return super.allowableActions(otherActor, direction, map);
 
         ActionList actions = new ActionList();
 
+        //FIXME :( instanceof
         for (int i = 0; i < otherActor.getInventory().size(); i++) {
             if (otherActor.getInventory().get(i) instanceof Wrench) {
                 actions.add(new DestroyShellAction(this));
@@ -97,6 +141,12 @@ public class Koopa extends Enemy implements Shell {
         return actions;
     }
 
+    /**
+     * A method to destroy the shell of the Koopa
+     * When a Koopa's shell is broken, it drops a Power Star item on the ground at it's location.
+     * @see PowerStar
+     * @param map The game map in which this Koopa presides.
+     */
     @Override
     public void destroyShell(GameMap map) {
         map.locationOf(this).addItem(new PowerStar(true));

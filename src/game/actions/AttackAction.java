@@ -40,6 +40,19 @@ public class AttackAction extends Action {
 		this.direction = direction;
 	}
 
+	/**
+	 * Executes an AttackAction.
+	 * This method is called any time a basic attack is made.
+	 *
+	 * On execution, an AttackAction will first check if the Actor executing this Action has a {@link game.Status Power Star}
+	 * buff active, if true, will deal damage = Integer.MAX_VALUE. If the Actor does not have a Power Star buff, it will
+	 * roll to see if the attack will land (will depend on the return value of {@link Weapon#chanceToHit()}. If the attack
+	 * does not miss, it will inflict damage on the target actor - and check if the Actor survived, else drop all of it's
+	 * items.
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return A description of what happened.
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -73,6 +86,12 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	/**
+	 * A method to return a descriptive string
+	 * @see edu.monash.fit2099.engine.actions.Action#menuDescription(Actor)
+	 * @param actor The actor performing the action.
+	 * @return A string to display in the game menu.
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;

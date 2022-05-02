@@ -17,11 +17,21 @@ import game.reset.Resettable;
  */
 public class Player extends Actor implements Resettable, Economy {
 
+	/**
+	 * A menu.
+	 */
 	private final Menu menu = new Menu();
 
+	/**
+	 * An ActionList of default actions the player may use.
+	 */
 	private final ActionList defaultActions = new ActionList(new ResetAction());
 
+	/**
+	 * A boolean flag to check if the player has reset the game.
+	 */
 	private boolean resetCheck = false;
+
 	/**
 	 * Constructor.
 	 *
@@ -36,6 +46,18 @@ public class Player extends Actor implements Resettable, Economy {
 		addWallet();
 	}
 
+	/**
+	 * Determine what action to execute
+	 *
+	 * This method will first check if a reset has been executed previously and if not, adds the player's default actions.
+	 * Then, a menu will be shown to the player where the user can input their choice of action to execute.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return The action to execute.
+	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Check to see if the Player has reset the game
@@ -51,7 +73,12 @@ public class Player extends Actor implements Resettable, Economy {
 		return menu.showMenu(this, actions, display);
 	}
 
-
+	/**
+	 * A method to get the display character of the Player.
+	 * This method checks if the player has an active SUPER_MUSHROOM buff, and if so, converts it's display character
+	 * to uppercase
+	 * @return The character to display on the game map.
+	 */
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.SUPER_MUSHROOM) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
@@ -71,6 +98,12 @@ public class Player extends Actor implements Resettable, Economy {
 		super.hurt(points);
 	}
 
+	/**
+	 * A method to reset the player instance.
+	 *
+	 * This method is called when the player executes a game reset.
+	 * It will heal the player to max health and remove any active buffs.
+	 */
 	@Override
 	public void resetInstance() {
 		resetCheck = true;
@@ -85,6 +118,10 @@ public class Player extends Actor implements Resettable, Economy {
 		}
 	}
 
+	/**
+	 * A method to add an associated wallet to a player.
+	 * @see WalletManager
+	 */
 	@Override
 	public void addWallet() {
 		WalletManager.getInstance().add(this);

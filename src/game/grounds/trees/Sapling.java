@@ -8,10 +8,15 @@ import game.items.Coin;
 
 import java.util.Random;
 
+/**
+ * A class representing a sapling (tree)
+ * Saplings have a 10% chance of spawning a coin ($20) each tick, and will grow into a Mature tree when it's age
+ * hits 20.
+ */
 public class Sapling extends Tree {
 
     private final Random rand = new Random();
-    private int age;
+
 
     public Sapling() {
         super('t');
@@ -25,6 +30,11 @@ public class Sapling extends Tree {
         registerInstance();
     }
 
+    /**
+     * Each tick, the sapling's age is incremented by 1.
+     * Then, it rolls to spawn a coin (10% chance)
+     * @param location The location of the tree.
+     */
     @Override
     public void tick(Location location) {
         //Call Parent tick (Check for Reset)
@@ -43,14 +53,17 @@ public class Sapling extends Tree {
         }
     }
 
+    /**
+     * A method to get the allowable actions when adjacent to a Sapling.
+     *
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return An empty ActionList if the actor is on the tree, or a JumpAction.
+     */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         if (location.containsAnActor() && location.getActor().equals(actor)) { return new ActionList(); }
         return new ActionList(new JumpAction(location, direction, 80, 20));
-    }
-
-    @Override
-    public int getAge() {
-        return this.age;
     }
 }

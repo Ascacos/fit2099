@@ -8,10 +8,22 @@ import game.Status;
 import game.grounds.Dirt;
 import game.items.Coin;
 
+/**
+ * A specialised move action to allow an actor to move to any high ground, without the need to {@link game.actions.JumpAction}
+ * jump. Guaranteed jump!
+ */
 public class PowerMoveAction extends Action {
 
+    /**
+     * The location to move to.
+     */
     private final Location destination;
 
+    /**
+     * Constructor.
+     *
+     * @param destination The location to jump to.
+     */
     public PowerMoveAction(Location destination) {
         this.destination = destination;
     }
@@ -27,6 +39,12 @@ public class PowerMoveAction extends Action {
         return null;
     }
 
+    /**
+     * A method to return a descriptive string
+     * @see edu.monash.fit2099.engine.actions.Action#menuDescription(Actor)
+     * @param actor The actor performing the action.
+     * @return A string to display in the game menu.
+     */
     @Override
     public String menuDescription(Actor actor) {
         return null;
