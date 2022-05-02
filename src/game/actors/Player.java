@@ -21,6 +21,8 @@ public class Player extends Actor implements Resettable {
 
 	private final ActionList defaultActions = new ActionList(new ResetAction());
 
+	private boolean resetCheck = false; // Default of boolean is False
+
 	/**
 	 * Constructor.
 	 *
@@ -32,11 +34,17 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		registerInstance();
+
 	}
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		actions.add(defaultActions);
+		// Adds ResetGame action
+		if (!resetCheck) {
+			actions.add(defaultActions);
+		}
+		//If Player has resetGame, cannot reset again
+
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -77,6 +85,7 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void resetInstance() {
+		resetCheck = true;
 		//Heals Mario to Max Hp
 		this.heal(this.getMaxHp());
 		//Reset Player Status (Super-mushroom and Power star)
