@@ -9,7 +9,7 @@ public class SuperMushroom extends ConsumableItem {
     /***
      * Constructor.
      */
-    public SuperMushroom() {
+    public SuperMushroom(boolean portable) {
         super("Super Mushroom", '^', true);
         this.addAction(new ConsumeItemAction(this));
     }

@@ -19,8 +19,8 @@ public class PowerStar extends ConsumableItem {
     /***
      * Constructor.
      */
-    public PowerStar() {
-        super("Power Star", '*', true);
+    public PowerStar(boolean portable) {
+        super("Power Star", '*', portable);
         this.lifetime = 10;
         this.healAmount = 200;
 
