@@ -50,6 +50,11 @@ public class PowerStar extends ConsumableItem {
     @Override
     public void consume(Actor actor) {
 
+        // if the actor is consuming this item from their inventory
+        if (actor.getInventory().contains(this)) {
+            actor.removeItemFromInventory(this);
+        }
+
         actor.heal(healAmount);
         actor.addCapability(Status.POWER_STAR);
     }
