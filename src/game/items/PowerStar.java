@@ -23,8 +23,8 @@ public class PowerStar extends ConsumableItem {
         super("Power Star", '*', portable);
         this.lifetime = 10;
         this.healAmount = 200;
-
-        this.addAction(new ConsumeItemAction(this));
+        consumeItemAction = new ConsumeItemAction(this);
+        this.addAction(consumeItemAction);
     }
 
     @Override
@@ -44,6 +44,9 @@ public class PowerStar extends ConsumableItem {
 
         if (lifetime == 0) {
             actor.removeItemFromInventory(this);
+            if (actor.hasCapability(Status.POWER_STAR)) {
+                actor.removeCapability(Status.POWER_STAR);
+            }
         }
     }
 
@@ -52,8 +55,11 @@ public class PowerStar extends ConsumableItem {
 
         // if the actor is consuming this item from their inventory
         if (actor.getInventory().contains(this)) {
-            actor.removeItemFromInventory(this);
+            this.lifetime = 10;
+            this.togglePortability();
+            this.removeAction(consumeItemAction);
         }
+
 
         actor.heal(healAmount);
         actor.addCapability(Status.POWER_STAR);
