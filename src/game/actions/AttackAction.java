@@ -44,7 +44,7 @@ public class AttackAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 
 		if (actor.hasCapability(Status.POWER_STAR)) {
-			map.removeActor(target);
+			target.hurt(Integer.MAX_VALUE);
 
 			return actor + " disintegrated " + target;
 		}
