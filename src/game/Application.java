@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.enemies.Goomba;
+import game.actors.enemies.Koopa;
 import game.actors.npcs.Toad;
 import game.grounds.Dirt;
 import game.grounds.Floor;
@@ -20,6 +21,7 @@ import game.grounds.trees.Sapling;
 import game.grounds.trees.Sprout;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
+import game.items.Wrench;
 
 /**
  * The main class for the Mario World game.
@@ -72,6 +74,10 @@ public class Application {
 			Actor toad = new Toad();
 			gameMap.at(42, 9).addActor(toad);
 
+			Actor koopa = new Koopa();
+			gameMap.at(45,9).addActor(koopa);
+
+			gameMap.at(42,10).addItem(new Wrench());
 			world.run();
 
 	}
