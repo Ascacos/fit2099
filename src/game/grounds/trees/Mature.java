@@ -61,6 +61,7 @@ public class Mature extends Tree {
                 if (!destination.containsAnActor() && destination.getGround().hasCapability(Status.FERTILE)) {
                     destination.setGround(new Sprout());
                     growthCycle = 0;
+                    break;
                 }
             }
         }
