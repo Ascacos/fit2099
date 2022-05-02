@@ -1,5 +1,6 @@
 package game.reset;
 
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
 
 public interface Resettable {
@@ -9,6 +10,7 @@ public interface Resettable {
      * TODO: execute this method in a reset manager later.
      */
     void resetInstance();
+
 
     /**
      * a default interface method that register current instance to the Singleton manager.

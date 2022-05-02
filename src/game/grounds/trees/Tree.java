@@ -6,8 +6,13 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.JumpAction;
+import game.actors.enemies.Goomba;
+import game.grounds.Dirt;
+import game.reset.Resettable;
 
-public abstract class Tree extends Ground {
+import java.util.Random;
+
+public abstract class Tree extends Ground implements Resettable {
 
     private int age;
 
@@ -20,6 +25,19 @@ public abstract class Tree extends Ground {
         super(displayChar);
         this.age = 0;
         this.addCapability(Status.TALL);
+    }
+
+    @Override
+    public void tick(Location location) {
+        if (this.hasCapability(Status.RESETTING)){
+            Random randnum = new Random();
+            //50% Chance for Tree to turn back into Dirt
+            int generatedNum = randnum.nextInt(101);
+
+            if (generatedNum < 50) {
+                location.setGround(new Dirt());
+            }
+        }
     }
 
     /**
@@ -35,5 +53,10 @@ public abstract class Tree extends Ground {
         if (!location.containsAnActor()) {
             location.addActor(actor);
         }
+    }
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESETTING);
     }
 }

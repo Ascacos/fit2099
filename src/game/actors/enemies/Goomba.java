@@ -24,6 +24,7 @@ public class Goomba extends Enemy {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
+		registerInstance();
 	}
 
 	/**
@@ -52,6 +53,12 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		//Check for Reset
+		Action parentAction = super.playTurn(actions, lastAction, map, display);
+		if (parentAction != null){
+			return parentAction;
+		}
+
 		for (Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)

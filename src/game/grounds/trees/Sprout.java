@@ -16,10 +16,14 @@ public class Sprout extends Tree {
     public Sprout() {
         super('+');
         age = 0;
+        registerInstance();
     }
 
     @Override
     public void tick(Location location) {
+        //Call Parent tick (Check for Reset)
+        super.tick(location);
+
         age++;
 
         // 10% chance to summon a Goomba

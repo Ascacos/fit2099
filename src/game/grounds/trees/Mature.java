@@ -23,6 +23,7 @@ public class Mature extends Tree {
     public Mature() {
         super('T');
         age = 0;
+        registerInstance();
     }
 
     /**
@@ -32,10 +33,14 @@ public class Mature extends Tree {
     public Mature(int age) {
         super('T');
         this.age = age;
+        registerInstance();
     }
 
     @Override
     public void tick(Location location) {
+        //Call Parent tick (Check for Reset)
+        super.tick(location);
+
         age++;
         growthCycle++;
 
@@ -51,19 +56,13 @@ public class Mature extends Tree {
         if (growthCycle >= 5) {
 
             for (int i = 0; i < location.getExits().size(); i++) {
-                //FIXME: cant use instanceof :(
-                // have applied a capability to Dirt (Status.FERTILE) - not sure if it's appropriate use of capabilities.
-                if (location.getExits().get(i).getDestination().getGround() instanceof Dirt) {
-                    Location destination = location.getExits().get(i).getDestination();
-                    if (!destination.containsAnActor() && destination.getGround().hasCapability(Status.FERTILE)) {
-                        destination.setGround(new Sprout());
-                        growthCycle = 0;
-                    }
+                Location destination = location.getExits().get(i).getDestination();
+
+                if (!destination.containsAnActor() && destination.getGround().hasCapability(Status.FERTILE)) {
+                    destination.setGround(new Sprout());
+                    growthCycle = 0;
                 }
             }
-
-            int random = rand.nextInt(location.getExits().size());
-            location.getExits().get(random).getDestination().setGround(new Sprout());
         }
     }
 

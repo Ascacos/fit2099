@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.Status;
 
 /**
  * Special Action for attacking other Actors.
@@ -41,6 +42,12 @@ public class AttackAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
+
+		if (actor.hasCapability(Status.POWER_STAR)) {
+			map.removeActor(target);
+
+			return actor + " disintegrated " + target;
+		}
 
 		Weapon weapon = actor.getWeapon();
 

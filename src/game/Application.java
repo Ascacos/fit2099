@@ -5,17 +5,21 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
 import game.actors.enemies.Goomba;
+import game.actors.npcs.Toad;
 import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.Wall;
 import game.grounds.trees.Mature;
 import game.grounds.trees.Sapling;
 import game.grounds.trees.Sprout;
+import game.items.PowerStar;
+import game.items.SuperMushroom;
 
 /**
  * The main class for the Mario World game.
@@ -58,6 +62,15 @@ public class Application {
 
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
+
+			Item mushroom = new SuperMushroom();
+			gameMap.at(41,10).addItem(mushroom);
+
+			Item star = new PowerStar();
+			gameMap.at(41, 11).addItem(star);
+
+			Actor toad = new Toad();
+			gameMap.at(42, 9).addActor(toad);
 
 			world.run();
 

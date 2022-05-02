@@ -16,15 +16,20 @@ public class Sapling extends Tree {
     public Sapling() {
         super('t');
         age = 0;
+        registerInstance();
     }
 
     public Sapling(int age) {
         super('t');
         this.age = age;
+        registerInstance();
     }
 
     @Override
     public void tick(Location location) {
+        //Call Parent tick (Check for Reset)
+        super.tick(location);
+
         age++;
 
         // 10% chance to summon a Coin
