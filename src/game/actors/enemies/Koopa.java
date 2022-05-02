@@ -9,9 +9,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Status;
+import game.actions.DestroyShellAction;
+import game.actors.Shell;
 import game.behaviours.DormantBehaviour;
+import game.items.PowerStar;
+import game.items.Wrench;
 
-public class Koopa extends Enemy {
+public class Koopa extends Enemy implements Shell {
     /**
      * Constructor.
      *
@@ -59,7 +63,8 @@ public class Koopa extends Enemy {
 
     @Override
     public boolean isConscious() {
-        return !super.isConscious() || isDormant();
+        if (super.isConscious()) return true;
+        else return !isDormant();
     }
 
     @Override
@@ -75,5 +80,27 @@ public class Koopa extends Enemy {
     public char getDisplayChar() {
         if (this.isDormant()) return 'D';
         else return super.getDisplayChar();
+    }
+
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        if (!isDormant()) return super.allowableActions(otherActor, direction, map);
+
+        ActionList actions = new ActionList();
+
+        for (int i = 0; i < otherActor.getInventory().size(); i++) {
+            if (otherActor.getInventory().get(i) instanceof Wrench) {
+                actions.add(new DestroyShellAction(this));
+            }
+        }
+
+        return actions;
+    }
+
+    @Override
+    public void destroyShell(GameMap map) {
+        map.locationOf(this).addItem(new PowerStar(true));
+        map.removeActor(this);
+        this.removeCapability(Status.DORMANT);
     }
 }
