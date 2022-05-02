@@ -17,6 +17,11 @@ public class SuperMushroom extends ConsumableItem {
     @Override
     public void consume(Actor actor) {
 
+        // if the actor is consuming this item from their inventory
+        if (actor.getInventory().contains(this)) {
+            actor.removeItemFromInventory(this);
+        }
+
         actor.increaseMaxHp(50);
         actor.addCapability(Status.SUPER_MUSHROOM);
     }
