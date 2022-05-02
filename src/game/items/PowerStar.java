@@ -27,6 +27,12 @@ public class PowerStar extends ConsumableItem {
         this.addAction(consumeItemAction);
     }
 
+    /**
+     * This method will check the lifetime remaining on a Power Star that is at some location (not in an Actor's
+     * inventory).
+     * If it's lifetime is finished, it will be removed from the location.
+     * @param currentLocation The location of the ground on which we lie.
+     */
     @Override
     public void tick(Location currentLocation) {
         System.out.println(lifetime);
@@ -37,6 +43,13 @@ public class PowerStar extends ConsumableItem {
         }
     }
 
+    /**
+     * PowerStar will be removed from the players inventory and the player will lose the PowerStar buff at the same
+     * time when the 10 turns is up. That is, when lifetime == 0.
+     *
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         System.out.println(lifetime);
@@ -50,6 +63,13 @@ public class PowerStar extends ConsumableItem {
         }
     }
 
+    /**
+     * A method to consume the Power Star.
+     * This method will check if the Actor has consumed the item from it's own inventory, and if so, toggle it's
+     * portability and remove it's consume action (removing the ability to interact with it)
+     * Then it will heal the player for the set heal amount, and apply the Power Star buff.
+     * @param actor The actor consuming the Power Star.
+     */
     @Override
     public void consume(Actor actor) {
 
